@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baloot</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="playboard">
+        <div class="player-1-space" id="player-1-space">
+
+        </div>
+        <div class="player-2-space" id="player-2-space">
+            
+        </div>
+        <div class="floor-space" id="floor-space">
+        </div>
+        <div class="player-3-space" id="player-3-space">
+            
+        </div>
+        <div class="player-4-space" id="player-4-space">
+            
+        </div>
+        <div class="player-4-controls" id="player-4-controls">
+            <button onclick="buySun()">Sun</button>
+        </div>
+    </div>
+
+    <div class="scores-board">
+        <button  onclick="buy()">buy</button>
+        <button  onclick="skip()">skip</button>
+        <p>Player 1: <strong id="p1score"></strong></p>
+        <p>Player 2: <strong id="p2score"></strong> </p>
+        <p>Player 3: <strong id="p3score"></strong></p>
+        <p>Player 4: <strong id="p4score"></strong></p>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

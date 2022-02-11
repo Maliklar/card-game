@@ -1,0 +1,204 @@
+body{
+    display: flex;
+    
+}
+.scores-board{
+    background-color: brown;
+    height: 100hv;
+    width: 300px;
+}
+
+
+
+
+
+.playboard{
+    width: 800px;
+    height: 600px;
+    display: grid;
+    grid-template-areas: 
+    "player1 player1 player1 player3"
+    "player2 floor floor player3"
+    "player2 floor floor player3"
+    "player2 floor floor player3"
+    "player2 player4 player4 player-4-controls";
+    grid-gap: 10px;
+
+    background-color: green;
+}
+
+.player-4-controls{
+    grid-area: player-4-controls;
+}
+
+
+.player-1-space{
+    /* height: 120px; */
+    align-items: center;
+    grid-area: player1;
+
+    padding-left: 10%;
+    justify-content: left space-between;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: white;
+}
+.player-2-space{
+    display: flex;
+    /* height: 300px; */
+    
+    flex-direction: column;
+    align-items: center;
+    grid-area: player2;
+    padding: 0px;
+    justify-content: left space-between;
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+}
+.player-3-space{
+    display: flex;
+    /* height: 300px; */
+
+    flex-direction: column;
+    align-items: center;
+    grid-area: player3;
+    padding: 0px;
+    justify-content: left space-between;    
+
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: white;
+}
+.player-4-space{
+    display: flex;
+    /* height: 120px; */
+
+    align-items: center;
+    padding-left: 10%;
+    justify-content: left space-between;
+    grid-area: player4;
+    border-top-style: solid;
+    border-top-width: 3px;
+    border-top-color: white;
+    
+}
+
+.floor-space{
+    grid-area: floor;
+    background-color: rgb(6, 255, 6);
+    display: grid;
+    grid-template-columns: start auto  end;
+    /* grid-template-rows: auto; */
+    grid-template-areas: 
+    ". card-top  ."
+    "card-left .  card-right"
+    ". card-bottom .";
+    height: 350px;
+    width: 350px;
+    /* justify-content: center; */
+    justify-self: center;
+    align-items: center;
+}
+
+@keyframes example {
+  0%{
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100%{
+        opacity: 1;
+    transform: translateX(1);
+  }
+}
+
+
+@keyframes slide-left {
+  0%{
+    opacity: 0;
+    transform: translateX(-170px);
+  }
+  100%{
+        opacity: 1;
+    transform: translateX(1);
+  }
+}
+
+@keyframes slide-right {
+  0%{
+    opacity: 0;
+    transform: translateX(170px);
+  }
+  100%{
+        opacity: 1;
+    transform: translateX(1);
+  }
+}
+
+@keyframes slide-bottom {
+  0%{
+    opacity: 0;
+    transform: translateY(170px);
+  }
+  100%{
+        opacity: 1;
+    transform: translateX(1);
+  }
+}
+
+@keyframes slide-top {
+  0%{
+    opacity: 0;
+    transform: translateY(-170px);
+  }
+  100%{
+        opacity: 1;
+    transform: translateX(1);
+  }
+}
+
+
+
+
+
+
+.left-card-floor{
+    grid-area: card-left;
+    height: 100px;
+    margin: 1px;
+    animation-duration: 0.5s;
+    animation-name: slide-left;
+
+}
+.right-card-floor{
+    grid-area: card-right;
+    height: 100px;
+    margin: 1px;
+    justify-self: right;
+    animation-duration: 0.5s;
+    animation-name: slide-right;
+
+}
+.top-card-floor{
+    grid-area: card-top;
+    height: 100px;
+    margin: 1px;
+    animation-duration: 0.5s;
+    animation-name: slide-top;
+}
+.bottom-card-floor{
+    grid-area: card-bottom;
+    height: 100px;
+    margin: 1px;
+    animation-duration: 0.5s;
+    animation-name: slide-bottom;
+    /* justify-self: end; */
+}
+
+.card{
+    height: 100px;
+    margin: 1px;
+    animation-duration: 0.1s;
+    animation-name: example;
+    
+}
