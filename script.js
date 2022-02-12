@@ -248,6 +248,7 @@ function p4ui(i){
                 card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
                 card.setAttribute("class", "card");
                 card.setAttribute("id", id);
+                card.setAttribute("data-value", player4Map.get(id));
 
                 card.style.marginRight = "-40px"
                 card.setAttribute("data-player", 4);
@@ -266,7 +267,6 @@ function p4ui(i){
                         checkFloorMax();
                     }
                 });
-                card.setAttribute("data-value", player4Map.get(id));
                 player4ui.appendChild(card);
                 i++;
                 p4ui(i);
@@ -524,6 +524,27 @@ function firstDistribution(){
     shuffleCards();
     shuffleCards();
 
+
+    // temp (give all aces to player 4)
+    // let t1 = cardsPointer.splice(cardsPointer.indexOf("ace_of_spades.png"), 1);
+    // player4Pointer.push("ace_of_spades.png");
+    // player4Map.set("ace_of_spades.png", cardsMap.get("ace_of_spades.png"));
+    // cardsMap.delete("ace_of_spades.png");
+
+    // let t2 = cardsPointer.splice(cardsPointer.indexOf("ace_of_hearts.png"), 1);
+    // player4Pointer.push("ace_of_hearts.png");
+    // player4Map.set("ace_of_hearts.png", cardsMap.get("ace_of_hearts.png"));
+    // cardsMap.delete("ace_of_hearts.png");
+
+    // let t3 = cardsPointer.splice(cardsPointer.indexOf("ace_of_clubs.png"), 1);
+    // player4Pointer.push("ace_of_clubs.png");
+    // player4Map.set("ace_of_clubs.png", cardsMap.get("ace_of_clubs.png"));
+    // cardsMap.delete("ace_of_clubs.png");
+    // let t4 = cardsPointer.splice(cardsPointer.indexOf("ace_of_diamonds.png"), 1);
+    // player4Pointer.push("ace_of_diamonds.png");
+    // player4Map.set("ace_of_diamonds.png", cardsMap.get("ace_of_diamonds.png"));
+    // cardsMap.delete("ace_of_diamonds.png");
+
     for(let i = 0 ;i < 5 ; i++){
         let temp = cardsPointer.pop();
         player1Pointer.push(temp);
@@ -545,12 +566,16 @@ function firstDistribution(){
         player3Map.set(temp, cardsMap.get(temp));
         cardsMap.delete(temp);
     }
+
+    // change it to 5 below i < 5
     for(let i = 0 ;i < 5 ; i++){
         let temp = cardsPointer.pop();
         player4Pointer.push(temp);
         player4Map.set(temp, cardsMap.get(temp));
         cardsMap.delete(temp);
     }
+
+    
 
     let temp = cardsPointer.pop();
         floorPointer.push(temp);
