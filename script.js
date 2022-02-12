@@ -102,7 +102,7 @@ function p1ui(i){
                 let id = player1Pointer[i];
 
                 console.log(player1Pointer);
-                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
+                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+"cover.png");
                 card.setAttribute("class", "card");
                 card.setAttribute("id", id);
 
@@ -113,6 +113,7 @@ function p1ui(i){
                     if(turnToPlay == 1){
                         player1ui.removeChild(card);
                         card.setAttribute("class", "top-card-floor");
+                        card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
 
                         floorui.appendChild(card);
                         floorPointer.push(id);
@@ -141,7 +142,7 @@ function p2ui(i){
                 let card = document.createElement("img");
                 let id = player2Pointer[i];
 
-                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
+                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+"cover.png");
                 card.setAttribute("class", "card");
                 card.style.marginTop = "-10px"
                 card.setAttribute("id", id);
@@ -154,6 +155,7 @@ function p2ui(i){
                         player2ui.removeChild(card);
                         card.setAttribute("class", "left-card-floor");
                         card.style.transform = "";
+                        card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
 
                         floorui.appendChild(card);
                         floorPointer.push(id);
@@ -181,8 +183,19 @@ function buy(){
 }
 
 function skip(){
+    firstCard = 0;
+    turnToPlay = 4;
+    p1score = 0;
+    p2score = 0;
+    p3score = 0;
+    p4score = 0;
+
+    firstCard = 0;
+
+    roundCounter = 1;
     firstDistribution();
     sortCards();
+
 
 }
 
@@ -191,7 +204,7 @@ function p3ui(i){
             if(i < player3Pointer.length){
                 let card = document.createElement("img");
                 let id = player3Pointer[i];
-                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
+                card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+"cover.png");
                 card.setAttribute("class", "card");
                 card.style.marginTop = "-10px";
                 card.setAttribute("id", id);
@@ -204,6 +217,8 @@ function p3ui(i){
                 card.addEventListener("click", ()=>{
                     if(turnToPlay == 3){
                         player3ui.removeChild(card);
+                        card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
+
                         card.setAttribute("class", "right-card-floor");
                         card.style.transform = "";
                         floorui.appendChild(card);
