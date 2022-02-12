@@ -32,46 +32,30 @@ let player3ui = document.getElementById("player-3-space");
 let player4ui = document.getElementById("player-4-space");
 let floorui = document.getElementById("floor-space");
 function createCards(){
+
+
+
     let type ="";
     for(let i = 1 ; i <= 4 ; i++){
         if(i==1){
-            type = "hearts";
+            type = "h";
         }
         if(i==2){
-            type = "spades";
+            type = "s";
         }
         if(i==3){
-            type = "diamonds";
+            type = "d";
         }
         if(i==4){
-            type = "clubs"
+            type = "c"
         }
         let subType = "";
-        for(let j = 6 ; j<= 13 ;j++){
+        for(let j = 7 ; j<= 14 ;j++){
             let value = j;
-            subType = j+"_of_"; 
-            if(j== 6){
-                subType = "ace_of_";
-                value = 13;
-            }
-            if(j == 11){
-                subType = "jack_of_";
-                value = j-1;
-            }
-            if(j == 12){
-                subType = "queen_of_";
-                value = j-1;
-            }
-            if(j == 13){
-                subType = "king_of_";
-                value = j-1;
-            }
-            if(j == 10){
-                value = 12;
-            }
+            let subType = j+"_"+type+".png";
             
-            cardsMap.set(subType + type + ".png", value);
-            cardsPointer.push(subType + type+".png");
+            cardsMap.set(subType, value);
+            cardsPointer.push(subType);
             
             
         }
@@ -117,6 +101,7 @@ function p1ui(i){
                 let card = document.createElement("img");
                 let id = player1Pointer[i];
 
+                console.log(player1Pointer);
                 card.setAttribute("src", "./assets/Playing Cards/PNG-cards-1.3/"+id);
                 card.setAttribute("class", "card");
                 card.setAttribute("id", id);
@@ -300,17 +285,17 @@ function floorUI(i){
 }
 
 function getPlayedCardType(pointer){
-    if(pointer.includes("hearts")){
-        return "hearts";
+    if(pointer.includes("h")){
+        return "h";
     }
-    if(pointer.includes("spades")){
-        return "spades";
+    if(pointer.includes("s")){
+        return "s";
     }
-    if(pointer.includes("clubs")){
-        return "clubs";
+    if(pointer.includes("c")){
+        return "c";
     }
-    if(pointer.includes("diamonds")){
-        return "diamonds";
+    if(pointer.includes("d")){
+        return "d";
     }
 }
 
@@ -575,7 +560,6 @@ function firstDistribution(){
         cardsMap.delete(temp);
     }
 
-    
 
     let temp = cardsPointer.pop();
         floorPointer.push(temp);
@@ -637,44 +621,47 @@ function secondDistribution(){
  let spades = [];
  let hearts = [];
 function sortCards(){
+    var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+
     diamonds = [];
     clubs = [];
     spades = [];
     hearts = [];
     for(let i = 0 ;i < player1Pointer.length ; i++){
-        if(getPlayedCardType(player1Pointer[i]) == "diamonds"){
+        if(getPlayedCardType(player1Pointer[i]) == "d"){
             diamonds.push(player1Pointer[i]);
         }
-        if(getPlayedCardType(player1Pointer[i]) == "clubs"){
+        if(getPlayedCardType(player1Pointer[i]) == "c"){
             clubs.push(player1Pointer[i]);
             
         }
-        if(getPlayedCardType(player1Pointer[i]) == "spades"){
+        if(getPlayedCardType(player1Pointer[i]) == "s"){
             spades.push(player1Pointer[i]);
             
         }
-        if(getPlayedCardType(player1Pointer[i]) == "hearts"){
+        if(getPlayedCardType(player1Pointer[i]) == "h"){
             hearts.push(player1Pointer[i]);
             
         }
     }
-    hearts = hearts.sort();
-    diamonds = diamonds.sort();
-    clubs = clubs.sort();
-    spades = spades.sort();
+    hearts = hearts.sort(collator.compare);
+    diamonds = diamonds.sort(collator.compare);
+    clubs = clubs.sort(collator.compare);
+    spades = spades.sort(collator.compare);
 
     player1Pointer = [];
-    for(let i = 0 ;i < hearts.length ;i++){
-        player1Pointer.push(hearts[i]);
-    }
+    
     for(let i = 0 ;i < clubs.length ;i++){
         player1Pointer.push(clubs[i]);
+    }
+    for (let i = 0; i < diamonds.length; i++) {
+      player1Pointer.push(diamonds[i]);
     }
     for(let i = 0 ;i < spades.length ;i++){
         player1Pointer.push(spades[i]);
     }
-    for(let i = 0 ;i < diamonds.length ;i++){
-        player1Pointer.push(diamonds[i]);
+    for(let i = 0 ;i < hearts.length ;i++){
+        player1Pointer.push(hearts[i]);
     }
 
 
@@ -685,30 +672,30 @@ function sortCards(){
     spades = [];
     hearts = [];
     for(let i = 0 ;i < player2Pointer.length ; i++){
-        if(getPlayedCardType(player2Pointer[i]) == "diamonds"){
+        if(getPlayedCardType(player2Pointer[i]) == "d"){
             diamonds.push(player2Pointer[i]);
         }
-        if(getPlayedCardType(player2Pointer[i]) == "clubs"){
+        if(getPlayedCardType(player2Pointer[i]) == "c"){
             clubs.push(player2Pointer[i]);
             
         }
-        if(getPlayedCardType(player2Pointer[i]) == "spades"){
+        if(getPlayedCardType(player2Pointer[i]) == "s"){
             spades.push(player2Pointer[i]);
             
         }
-        if(getPlayedCardType(player2Pointer[i]) == "hearts"){
+        if(getPlayedCardType(player2Pointer[i]) == "h"){
             hearts.push(player2Pointer[i]);
             
         }
     }
-    hearts = hearts.sort();
-    diamonds = diamonds.sort();
-    clubs = clubs.sort();
-    spades = spades.sort();
+    hearts = hearts.sort(collator.compare);
+    diamonds = diamonds.sort(collator.compare);
+    clubs = clubs.sort(collator.compare);
+    spades = spades.sort(collator.compare);
 
     player2Pointer = [];
-    for(let i = 0 ;i < hearts.length ;i++){
-        player2Pointer.push(hearts[i]);
+    for(let i = 0 ;i < diamonds.length ;i++){
+        player2Pointer.push(diamonds[i]);
     }
     for(let i = 0 ;i < clubs.length ;i++){
         player2Pointer.push(clubs[i]);
@@ -716,8 +703,8 @@ function sortCards(){
     for(let i = 0 ;i < spades.length ;i++){
         player2Pointer.push(spades[i]);
     }
-    for(let i = 0 ;i < diamonds.length ;i++){
-        player2Pointer.push(diamonds[i]);
+    for(let i = 0 ;i < hearts.length ;i++){
+        player2Pointer.push(hearts[i]);
     }
 
 
@@ -727,30 +714,30 @@ function sortCards(){
     spades = [];
     hearts = [];
     for(let i = 0 ;i < player3Pointer.length ; i++){
-        if(getPlayedCardType(player3Pointer[i]) == "diamonds"){
+        if(getPlayedCardType(player3Pointer[i]) == "d"){
             diamonds.push(player3Pointer[i]);
         }
-        if(getPlayedCardType(player3Pointer[i]) == "clubs"){
+        if(getPlayedCardType(player3Pointer[i]) == "c"){
             clubs.push(player3Pointer[i]);
             
         }
-        if(getPlayedCardType(player3Pointer[i]) == "spades"){
+        if(getPlayedCardType(player3Pointer[i]) == "s"){
             spades.push(player3Pointer[i]);
             
         }
-        if(getPlayedCardType(player3Pointer[i]) == "hearts"){
+        if(getPlayedCardType(player3Pointer[i]) == "h"){
             hearts.push(player3Pointer[i]);
             
         }
     }
-    hearts = hearts.sort();
-    diamonds = diamonds.sort();
-    clubs = clubs.sort();
-    spades = spades.sort();
+    hearts = hearts.sort(collator.compare);
+    diamonds = diamonds.sort(collator.compare);
+    clubs = clubs.sort(collator.compare);
+    spades = spades.sort(collator.compare);
 
     player3Pointer = [];
-    for(let i = 0 ;i < hearts.length ;i++){
-        player3Pointer.push(hearts[i]);
+    for(let i = 0 ;i < diamonds.length ;i++){
+        player3Pointer.push(diamonds[i]);
     }
     for(let i = 0 ;i < clubs.length ;i++){
         player3Pointer.push(clubs[i]);
@@ -758,8 +745,8 @@ function sortCards(){
     for(let i = 0 ;i < spades.length ;i++){
         player3Pointer.push(spades[i]);
     }
-    for(let i = 0 ;i < diamonds.length ;i++){
-        player3Pointer.push(diamonds[i]);
+    for(let i = 0 ;i < hearts.length ;i++){
+        player3Pointer.push(hearts[i]);
     }
 
 
@@ -769,39 +756,43 @@ function sortCards(){
     spades = [];
     hearts = [];
     for(let i = 0 ;i < player4Pointer.length ; i++){
-        if(getPlayedCardType(player4Pointer[i]) == "diamonds"){
+        if(getPlayedCardType(player4Pointer[i]) == "d"){
             diamonds.push(player4Pointer[i]);
         }
-        if(getPlayedCardType(player4Pointer[i]) == "clubs"){
+        if(getPlayedCardType(player4Pointer[i]) == "c"){
             clubs.push(player4Pointer[i]);
             
         }
-        if(getPlayedCardType(player4Pointer[i]) == "spades"){
+        if(getPlayedCardType(player4Pointer[i]) == "s"){
             spades.push(player4Pointer[i]);
             
         }
-        if(getPlayedCardType(player4Pointer[i]) == "hearts"){
+        if(getPlayedCardType(player4Pointer[i]) == "h"){
             hearts.push(player4Pointer[i]);
             
         }
     }
-    hearts = hearts.sort();
-    diamonds = diamonds.sort();
-    clubs = clubs.sort();
-    spades = spades.sort();
+    hearts = hearts.sort(collator.compare);
+    diamonds = diamonds.sort(collator.compare);
+    clubs = clubs.sort(collator.compare);
+    spades = spades.sort(collator.compare);
 
     player4Pointer = [];
-    for(let i = 0 ;i < hearts.length ;i++){
-        player4Pointer.push(hearts[i]);
-    }
+    
     for(let i = 0 ;i < clubs.length ;i++){
         player4Pointer.push(clubs[i]);
+    }
+    for (let i = 0; i < diamonds.length; i++) {
+      player4Pointer.push(diamonds[i]);
     }
     for(let i = 0 ;i < spades.length ;i++){
         player4Pointer.push(spades[i]);
     }
-    for(let i = 0 ;i < diamonds.length ;i++){
-        player4Pointer.push(diamonds[i]);
+    for (let i = 0; i < hearts.length; i++) {
+      player4Pointer.push(hearts[i]);
     }
+
+    
+// console.log(player4Pointer.sort(collator.compare));
     console.log(player4Pointer );
 }

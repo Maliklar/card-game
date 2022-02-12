@@ -36,7 +36,7 @@ body{
     /* height: 120px; */
     align-items: center;
     grid-area: player1;
-    visibility: hidden;
+    /* visibility: hidden; */
 
     padding-left: 10%;
     justify-content: left space-between;
@@ -47,7 +47,7 @@ body{
 .player-2-space{
     display: flex;
     /* height: 300px; */
-        visibility: hidden;
+        /* visibility: hidden; */
 
     flex-direction: column;
     align-items: center;
@@ -67,7 +67,7 @@ body{
     grid-area: player3;
     padding: 0px;
     justify-content: left space-between;    
-    visibility: hidden;
+    /* visibility: hidden; */
     border-left-style: solid;
     border-left-width: 3px;
     border-left-color: white;
